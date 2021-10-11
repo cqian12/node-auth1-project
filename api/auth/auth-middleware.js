@@ -51,8 +51,8 @@ async function checkUsernameExists(req, res, next) {
   try {
     const exists = await db('users').where('username', username).first()
 
-    exists ? next({status:401, message:'Invalid credentials'})
-    : next()
+    exists ? next()
+    : next({status:401, message:'Invalid credentials'})
   } catch(err) {
     next(err)
   }
